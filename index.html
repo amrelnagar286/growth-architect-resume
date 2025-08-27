@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amr Al-Najjar | Growth Marketing Architect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --brand-primary: #6D28D9; /* Royal Purple */
+            --brand-primary-dark: #4C1D95;
+            --brand-success: #10B981;
+            --brand-warning: #F59E0B;
+            --bg-page: #F3F4F6;
+            --bg-paper: #FFFFFF;
+            --bg-subtle: #F9FAFB;
+            --text-header: #111827;
+            --text-body: #1F2937;
+            --text-muted: #6B7280;
+            --border-color: #E5E7EB;
+            --font-main: 'IBM Plex Sans', sans-serif;
+        }
+
+        /* --- Base & Print Setup --- */
+        html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-page);
+            margin: 0;
+            padding: 0;
+            color: var(--text-body);
+        }
+        .page-wrapper {
+            max-width: 10in; /* Wider Layout */
+            margin: 2rem auto;
+        }
+        .page {
+            background-color: var(--bg-paper);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            page-break-after: always;
+            min-height: 11in;
+            border: 1px solid var(--border-color);
+        }
+        @media print {
+            body { padding: 0; background-color: #fff; }
+            .page-wrapper { margin: 0; max-width: 100%;}
+            .page { box-shadow: none; border: none; margin: 0; }
+        }
+
+        /* --- Header --- */
+        .cv-header {
+            padding: 40px 50px;
+            background: linear-gradient(135deg, var(--brand-primary-dark) 0%, var(--brand-primary) 100%);
+            color: var(--bg-paper);
+            text-align: center;
+        }
+        .header-text h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.1;
+            color: var(--bg-paper);
+        }
+        .header-text h2 {
+            font-size: 22px;
+            font-weight: 400;
+            margin: 10px 0 20px 0;
+            color: #DDD6FE;
+            line-height: 1.4;
+        }
+        .professional-thesis {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .contact-bar {
+            padding: 15px 50px;
+            background-color: var(--bg-subtle);
+            border-bottom: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px 25px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .contact-bar a {
+            color: var(--text-body);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        .contact-bar a:hover { color: var(--brand-primary); }
+        .contact-bar i { margin-right: 12px; color: var(--text-muted); width: 20px; text-align: center; transition: color 0.3s ease; }
+        .contact-bar a:hover i { color: var(--brand-primary); }
+
+        /* --- Body Layout --- */
+        .cv-body { display: flex; flex-grow: 1; padding: 20px 50px 40px 50px; }
+        .main-content { width: 65%; padding-right: 35px; }
+        .sidebar { width: 35%; padding-left: 35px; border-left: 1px solid var(--border-color); }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-header);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 30px 0 25px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .section-title i {
+            color: var(--brand-primary);
+            margin-right: 15px;
+            font-size: 20px;
+            width: 28px; text-align: center;
+        }
+
+        /* --- Main Content Styling --- */
+        .summary p, .achievements-list li {
+            font-size: 16.5px; /* Increased font size */
+            line-height: 1.8;
+            color: var(--text-body);
+            text-align: justify;
+            -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;
+        }
+        .experience-item { margin-bottom: 30px; }
+        .job-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-header);
+            margin-bottom: 4px;
+        }
+        .company-info {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+        .achievements-list { list-style: none; padding: 0; margin: 0; }
+        .achievements-list li { position: relative; padding-left: 35px; margin-bottom: 15px; }
+        .achievements-list li .icon {
+            position: absolute; left: 0; top: 7px;
+            color: var(--brand-success); font-size: 18px;
+            width: 20px; text-align: center;
+        }
+        .achievements-list strong { color: var(--brand-primary); font-weight: 600; }
+        
+        .degree { font-size: 17px; font-weight: 600; color: var(--text-header); }
+        .university { font-size: 16px; color: var(--text-muted); }
+
+        /* --- Sidebar Styling --- */
+        .sidebar-container {
+            background-color: var(--bg-subtle);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+            transition: box-shadow 0.3s ease;
+            text-align: center;
+        }
+        .sidebar-container:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        .kpi-dashboard .section-title { 
+            justify-content: center; 
+            text-align: center; 
+            margin: 0 0 20px 0; 
+        }
+        .kpi-dashboard h3 { margin: 0 0 15px 0; font-size: 17px; font-weight: 600; color: var(--text-header); }
+        .kpi-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+        .kpi-card {
+            background-color: var(--bg-paper); border-radius: 8px;
+            padding: 18px; text-align: center;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .kpi-card:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .kpi-card .value {
+            font-size: 30px; font-weight: 700; color: var(--brand-primary);
+            margin: 0; line-height: 1.1;
+        }
+        .kpi-card .label {
+            font-size: 13px; font-weight: 500; color: var(--text-muted);
+            margin-top: 6px; line-height: 1.3;
+        }
+        .sidebar-container .section-title {
+            justify-content: center;
+            text-align: center;
+            margin: 0 0 20px 0;
+        }
+        .skill-category {
+            margin-bottom: 20px;
+        }
+        .skill-category h4 {
+            font-size: 16px; font-weight: 600; color: var(--text-header);
+            margin: 0 0 12px 0;
+            text-align: center;
+        }
+        .skills-list { 
+            display: flex; flex-wrap: wrap; gap: 8px; 
+            justify-content: center;
+        }
+        .skill-item {
+            background-color: #eef2ff; padding: 6px 12px; border-radius: 6px;
+            font-size: 14px; font-weight: 500; color: var(--brand-primary-dark);
+        }
+        .education-item {
+            text-align: center;
+        }
+        .education-item .degree {
+            font-size: 16px; font-weight: 600; color: var(--text-header);
+            margin-bottom: 8px;
+        }
+        .education-item .university {
+            font-size: 14px; color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* --- Page 2: Professional Development --- */
+        .courses-section { padding: 40px 50px; }
+        .courses-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+        .course-category { padding: 25px; border-radius: 8px; background-color: var(--bg-subtle); transition: box-shadow 0.3s ease; }
+        .course-category:hover { box-shadow: 0 5px 20px rgba(0,0,0,0.07); }
+        .course-category h3 {
+            margin: 0 0 18px 0; font-size: 18px;
+            font-weight: 600; display: flex; align-items: center;
+        }
+        .course-category h3 i { margin-right: 15px; width: 22px; text-align: center; font-size: 18px; }
+        .course-list { list-style: none; padding: 0; margin: 0; }
+        .course-list li { font-size: 15px; line-height: 1.6; margin-bottom: 12px; font-weight: 500; color: var(--text-body); }
+        .course-list .instructor {
+            font-size: 14px;
+            color: var(--text-muted);
+            display: block;
+            font-weight: 400;
+            margin-top: 4px;
+        }
+
+        .cat-media-buying { border-left: 5px solid #38bdf8; }
+        .cat-media-buying h3 { color: #0369a1; }
+        .cat-ecommerce { border-left: 5px solid var(--brand-success); }
+        .cat-ecommerce h3 { color: #047857; }
+        .cat-strategy { border-left: 5px solid var(--brand-warning); }
+        .cat-strategy h3 { color: #b45309; }
+        .cat-funnels { border-left: 5px solid #ef4444; }
+        .cat-funnels h3 { color: #b91c1c; }
+        .cat-data { border-left: 5px solid #8b5cf6; }
+        .cat-data h3 { color: #6d28d9; }
+        .cat-soft-skills { border-left: 5px solid #737373; }
+        .cat-soft-skills h3 { color: #525252; }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: STRATEGIC OVERVIEW -->
+    <div class="page-wrapper">
+        <div class="page">
+            <header class="cv-header">
+                <div class="header-text">
+                    <h1>Amr Al-Najjar</h1>
+                    <h2>Growth Marketing Architect | E-commerce & Regulated Industries</h2>
+                    <div class="professional-thesis">
+                        Blending Pharmaceutical Precision with Data-Driven Growth Marketing
+                    </div>
+                </div>
+            </header>
+            <div class="contact-bar" style="grid-template-columns: repeat(3, 1fr); justify-items: center; text-align: center;">
+                <a href="tel:+201025830133"><i class="fa-solid fa-phone"></i> +20 102 583 0133</a>
+                <a href="mailto:amrelnagar286@gmail.com"><i class="fa-solid fa-envelope"></i> amrelnagar286@gmail.com</a>
+                <a href="https://www.linkedin.com/in/amrelnagar286" target="_blank"><i class="fa-brands fa-linkedin"></i> amrelnagar286</a>
+            </div>
+            <div class="cv-body">
+                <main class="main-content">
+                    <section class="summary">
+                        <h2 class="section-title"><i class="fa-solid fa-user-tie"></i> Professional Profile</h2>
+                        <p>
+                            A results-driven Growth Marketing Architect with a unique blend of pharmaceutical science precision and digital strategy expertise. Proven in managing over <strong>$145,000 in ad spend</strong> to scale 10+ diverse brands across highly competitive sectors (FMCG, Cosmetics, OTC, Medical Devices). I specialize in engineering full-funnel, data-driven marketing systems that translate business objectives into measurable revenue growth, enhanced market share, and superior customer lifetime value.
+                        </p>
+                    </section>
+                    
+                    <section class="experience">
+                        <h2 class="section-title"><i class="fa-solid fa-rocket"></i> Professional Experience</h2>
+                    
+                        <div class="experience-item">
+                            <h3 class="job-title">Digital Marketing Supervisor</h3>
+                            <p class="company-info">Ibn Khaldun Drugstore | Feb 2023 - Present</p>
+                            <ul class="achievements-list">
+                                <li><i class="icon fa-solid fa-chess-king"></i><strong>Strategic Leadership:</strong> Co-architected the annual business plan for the agencies division, translating high-level business goals into actionable quarterly digital marketing strategies for a portfolio of 10+ B2B and B2C brands.</li>
+                                <li><i class="icon fa-solid fa-chart-line"></i><strong>Performance Management:</strong> Directed a multi-platform ad spend portfolio exceeding <strong>$145,000</strong>, maintaining an average <strong>ROAS of 4.5x</strong> while delivering over <strong>190 million impressions</strong> at an efficient average CPM of $0.71.</li>
+                                <li><i class="icon fa-solid fa-users-gear"></i><strong>Team Development:</strong> Led, mentored, and scaled a cross-functional team of 5+ marketing professionals, implementing a KPI-driven performance framework that increased team productivity and creative output by <strong>30%</strong>.</li>
+                                <li><i class="icon fa-solid fa-bullseye-arrow"></i><strong>Conversion Optimization:</strong> Engineered integrated campaigns that successfully reduced average Customer Acquisition Cost <strong>(CPA) by 20%</strong> through rigorous A/B testing and data analysis.</li>
+                                <li><i class="icon fa-solid fa-arrow-trend-up"></i><strong>Market Penetration:</strong> Devised and executed the complete Go-to-Market (GTM) strategy for a new medical device, successfully capturing <strong>15% market share</strong> within its first 9 months.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="experience-item">
+                            <h3 class="job-title">Digital Marketing Specialist</h3>
+                            <p class="company-info">Ibn Khaldun Drugstore | Jul 2022 - Jan 2023</p>
+                            <ul class="achievements-list">
+                                 <li><i class="icon fa-solid fa-person-running"></i>Executed targeted Meta ad campaigns for key FMCG products that generated a <strong>70% increase in qualified B2C leads</strong> and drove offline traffic to partner pharmacies.</li>
+                            </ul>
+                        </div>
+                    </section>
+                </main>
+                
+                <aside class="sidebar">
+                    <div class="sidebar-container">
+                        <section class="kpi-dashboard">
+                            <h3 class="section-title"><i class="fa-solid fa-gauge-high"></i> Dashboard</h3>
+                            <div class="kpi-grid">
+                                <div class="kpi-card"><p class="value">$145K+</p><p class="label">Managed Ad Spend</p></div>
+                                <div class="kpi-card"><p class="value">4.5x</p><p class="label">Avg. ROAS</p></div>
+                                <div class="kpi-card"><p class="value">15%</p><p class="label">Market Share Gain</p></div>
+                                <div class="kpi-card"><p class="value">190M+</p><p class="label">Impressions</p></div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="sidebar-container">
+                        <section>
+                            <h3 class="section-title"><i class="fa-solid fa-brain"></i> Core Skillset</h3>
+                            <div class="skill-category">
+                                <h4>Strategy & Growth</h4>
+                                <div class="skills-list">
+                                    <span class="skill-item">E-commerce Strategy</span><span class="skill-item">Full-Funnel Marketing</span>
+                                    <span class="skill-item">Team Leadership</span>
+                                    <span class="skill-item">GTM Strategy</span><span class="skill-item">Budget & P&L</span>
+                                    
+                                </div>
+                            </div>
+                             <div class="skill-category">
+                                <h4>Performance Marketing</h4>
+                                <div class="skills-list">
+                                    <span class="skill-item">Media Buying</span><span class="skill-item">CRO</span>
+                                    <span class="skill-item">Audience Targeting</span><span class="skill-item">A/B Testing</span>
+                                </div>
+                            </div>
+                             <div class="skill-category">
+                                <h4>Technical & Analytical</h4>
+                                <div class="skills-list">
+                                    <span class="skill-item">Data Analysis</span><span class="skill-item">GA4</span><span class="skill-item">GTM</span>
+                                    <span class="skill-item">CAPI</span><span class="skill-item">SEO</span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                     <div class="sidebar-container">
+                        <section>
+                            <h3 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h3>
+                            <div class="education-item">
+                                <h4 class="degree">BSc, Pharmaceutical Sciences</h4>
+                                <p class="university">The Hashemite University <br> 2017 - 2022</p>
+                            </div>
+                        </section>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <!-- PAGE 2: TECHNICAL ARSENAL -->
+        <div class="page" style="margin-top: 2rem;">
+            <div class="courses-section">
+                <h2 class="section-title" style="padding-bottom: 20px; justify-content: center; text-align: center;"><i class="fa-solid fa-layer-group"></i> Professional Development Arsenal</h2>
+                <div class="courses-grid">
+                    
+                    <div class="course-category cat-media-buying">
+                        <h3><i class="fa-solid fa-bullhorn"></i> Media Buying & Performance</h3>
+                        <ul class="course-list">
+                            <li>Media Buying Diploma <span class="instructor">by Abdelrahman Alaa</span></li>
+                            <li>Media Buyer Mind Shift Course <span class="instructor">by Media Buyer Mind Shift</span></li>
+                            <li>Performance Growth Track <span class="instructor">by Mahmoud Omar</span></li>
+                            <li>Google Ads Suite Certifications <span class="instructor">by Google</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="course-category cat-ecommerce">
+                        <h3><i class="fa-solid fa-store"></i> E-commerce & Growth</h3>
+                        <ul class="course-list">
+                            <li>E-Commerce Marketing Course <span class="instructor">by Abdelrahman Alaa</span></li>
+                            <li>Comprehensive E-commerce Training <span class="instructor">by Mohamed El Shahawy</span></li>
+                            <li>The One Product Brand & COD Mastery <span class="instructor">by Amr Abdelnabi</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="course-category cat-strategy">
+                        <h3><i class="fa-solid fa-chess"></i> Marketing Psychology & Strategy</h3>
+                         <ul class="course-list">
+                            <li>Top 10% Mindset Marketers <span class="instructor">by Dr. Abdou Ramadan</span></li>
+                            <li>Digital Marketing: SEO & Online Presence <span class="instructor">by Edraak</span></li>
+                            <li>Fundamentals of Digital Marketing <span class="instructor">by Google</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="course-category cat-funnels">
+                        <h3><i class="fa-solid fa-filter-circle-dollar"></i> Sales Funnels & Conversion</h3>
+                        <ul class="course-list">
+                            <li>Sales Funnels Masters <span class="instructor">by Hany Hussein</span></li>
+                            <li>Persuading Others <span class="instructor">by LinkedIn Learning</span></li>
+                            <li>Writing in the Sciences <span class="instructor">by Coursera (Stanford)</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="course-category cat-data">
+                        <h3><i class="fa-solid fa-chart-pie"></i> Data Science & Analytics</h3>
+                        <ul class="course-list">
+                            <li>Learning Data Analytics <span class="instructor">by LinkedIn Learning</span></li>
+                            <li>Google Analytics Qualification <span class="instructor">by Google</span></li>
+                            <li>Data Science & Machine Learning <span class="instructor">by Edraak</span></li>
+                            <li>Introduction to Artificial Intelligence <span class="instructor">by Edraak</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="course-category cat-soft-skills">
+                        <h3><i class="fa-solid fa-handshake-angle"></i> Leadership & Soft Skills</h3>
+                        <ul class="course-list">
+                            <li>Professional Soft Skills Pathway <span class="instructor">by LinkedIn Learning</span></li>
+                            <li>Developing Emotional Intelligence <span class="instructor">by LinkedIn Learning</span></li>
+                            <li>Communication Foundations <span class="instructor">by LinkedIn Learning</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <section class="experience" style="margin-top: 25px;">
+                    <h2 class="section-title"><i class="fa-solid fa-screwdriver-wrench"></i> Technical Proficiency & Early Experience</h2>
+                    <ul class="achievements-list">
+                        <li><i class="icon fa-solid fa-magnifying-glass-chart"></i><strong>Technical Audits:</strong> Proficient in executing end-to-end technical audits to ensure >99% data tracking accuracy, encompassing setup and debugging of Facebook Pixel, Conversion API, Google Tag Manager, and GA4, resolving complex issues like event deduplication.</li>
+                        <li><i class="icon fa-solid fa-sitemap"></i><strong>Advanced Campaign Architecture:</strong> Skilled in designing sophisticated campaign structures on Google & Meta, including intent-based ad group segmentation (e.g., Branded vs. Non-Branded Keywords, TOFU/MOFU/BOFU) and applying advanced bidding strategies for maximum efficiency.</li>
+                        <li><i class="icon fa-solid fa-user-ninja"></i><strong>Early Career Initiative (2018-2022):</strong> Held multiple foundational roles during university including <strong>Planning Manager</strong> (RBCs Team), <strong>Digital Marketing Intern</strong> (NAIROUKH PHARMA), and <strong>Social Media Director</strong> (OTC HU), demonstrating a passion for strategy and execution from day one.</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
