@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1200, initial-scale=0.5, minimum-scale=0.3, maximum-scale=2.0, user-scalable=yes">
     <title>Amr Al-Najjar | Growth Marketing Architect</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,9 +32,12 @@
             margin: 0;
             padding: 0;
             color: var(--text-body);
+            min-width: 1200px; /* Force minimum width */
+            overflow-x: auto; /* Allow horizontal scroll if needed */
         }
         .page-wrapper {
-            max-width: 10in; /* Wider Layout */
+            width: 10in; /* Fixed width instead of max-width */
+            min-width: 10in; /* Ensure minimum width */
             margin: 2rem auto;
         }
         .page {
@@ -46,9 +49,32 @@
             min-height: 11in;
             border: 1px solid var(--border-color);
         }
+        /* Disable responsive behavior - force desktop layout on all devices */
+        @media screen and (max-width: 1199px) {
+            body {
+                min-width: 1200px;
+                overflow-x: auto;
+            }
+            .page-wrapper {
+                width: 10in;
+                min-width: 10in;
+                margin: 2rem auto;
+            }
+            .page {
+                min-width: 10in;
+            }
+            /* Prevent any responsive adjustments */
+            .cv-body {
+                min-width: calc(10in - 100px);
+            }
+            .contact-bar {
+                min-width: calc(10in - 100px);
+            }
+        }
+        
         @media print {
             body { padding: 0; background-color: #fff; }
-            .page-wrapper { margin: 0; max-width: 100%;}
+            .page-wrapper { margin: 0; width: 100%;}
             .page { box-shadow: none; border: none; margin: 0; }
         }
 
