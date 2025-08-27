@@ -1,4 +1,4 @@
-# Amr Al-Najjar | The Executive Dossier
+# Amr Al-Najjar | The Executive Resume
 
 This repository contains the official strategic dossier of Amr Al-Najjar, a Growth Marketing Architect specializing in E-commerce and regulated industries. This document provides a data-rich, comprehensive overview of my professional experience, quantified achievements, and technical expertise.
 
